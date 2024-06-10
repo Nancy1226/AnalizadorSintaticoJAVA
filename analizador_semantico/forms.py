@@ -1,4 +1,4 @@
 from django import forms
 
 class CodeForm(forms.Form):
-    code = forms.CharField(widget=forms.Textarea, label='Código Java')
+    code = forms.CharField(widget=forms.Textarea, label=' ')

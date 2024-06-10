@@ -3,5 +3,5 @@ from .views import home
 
 
 urlpatterns = [
-    path('sema/', home, name='home'),
+    path('semantico/', home, name='home'),
 ]

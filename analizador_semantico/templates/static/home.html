@@ -1,134 +1,97 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Analizador de Código Java</title>
-</head>
-<body>
-    <h1>Analizador Léxico, Sintáctico y Semántico</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Analizar</button>
-    </form>
-
-    {% if tokens %}
-        <h2>Resultados del Análisis Léxico</h2>
-        <table border="1">
-            <tr>
-                <th>Token</th>
-                <th>Tipo</th>
-            </tr>
-            {% for tipo, token in tokens %}
-            <tr>
-                <td>{{ token }}</td>
-                <td>{{ tipo }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-
-        <h2>Conteo de Tokens</h2>
-        <table border="1">
-            <tr>
-                <th>PR</th>
-                <th>ID</th>
-                <th>Número</th>
-                <th>Símbolo</th>
-                <th>Error</th>
-            </tr>
-            <tr>
-                <td>{{ conteo_tokens.PR }}</td>
-                <td>{{ conteo_tokens.ID }}</td>
-                <td>{{ conteo_tokens.Número }}</td>
-                <td>{{ conteo_tokens.Símbolo }}</td>
-                <td>{{ conteo_tokens.Error }}</td>
-            </tr>
-        </table>
-
-        <h2>Análisis Sintáctico:</h2>
-        {% if es_valido_sintactico %}
-            <p>Válido</p>
-        {% else %}
-            <p>Inválido</p>
-        {% endif %}
-
-        <h2>Análisis Semántico:</h2>
-        {% if es_valido_semantico %}
-            <p>Válido</p>
-        {% else %}
-            <p>Inválido</p>
-        {% endif %}
-    {% endif %}
-</body>
-</html> -->
-
-
-
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analizador de Código Java</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Analizador Léxico, Sintáctico y Semántico</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Analizar</button>
-    </form>
 
-    {% if tokens %}
-        <h2>Resultados del Análisis Léxico</h2>
-        <table border="1">
-            <tr>
-                <th>Token</th>
-                <th>Tipo</th>
-            </tr>
-            {% for tipo, token in tokens %}
-            <tr>
-                <td>{{ token }}</td>
-                <td>{{ tipo }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+<body class="bg-gray-100 text-gray-800">
+    <div class="flex flex-col items-center justify-center min-h-screen py-6">
+        <h1 class="text-4xl font-bold mb-6">Analizador de Código Java</h1>
+        <h2 class="text-3xl font-bold mb-8 text-center">Analizador Léxico, Sintáctico y Semántico</h2>
+        <form method="post" class="w-full max-w-3xl bg-white p-6 rounded-lg shadow-md">
+            {% csrf_token %}
+            <div class="space-y-4 w-full">
+                {{ form.as_p }}
+            </div>
+            <div class="flex justify-center mt-4">
+                <button type="submit" class="bg-purple-500 hover:bg-purple-400 focus:ring-4 focus:ring-purple-300 text-white font-bold py-2 px-4 rounded-lg shadow-lg">Analizar</button>
+            </div>
+        </form>
 
-        <h2>Conteo de Tokens</h2>
-        <table border="1">
-            <tr>
-                <th>PR</th>
-                <th>ID</th>
-                <th>Número</th>
-                <th>Símbolo</th>
-                <th>Error</th>
-            </tr>
-            <tr>
-                <td>{{ conteo_tokens.PR }}</td>
-                <td>{{ conteo_tokens.ID }}</td>
-                <td>{{ conteo_tokens.Número }}</td>
-                <td>{{ conteo_tokens.Símbolo }}</td>
-                <td>{{ conteo_tokens.Error }}</td>
-            </tr>
-        </table>
+        {% if tokens %}
+        <div class="w-full max-w-3xl mt-6 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Resultados del Análisis Léxico</h2>
+            <div class="overflow-x-auto">
+                <table class="table-auto w-full border border-gray-300 mt-3">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border px-4 py-2">Token</th>
+                            <th class="border px-4 py-2">Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tipo, token in tokens %}
+                        <tr>
+                            <td class="border px-4 py-2">{{ token }}</td>
+                            <td class="border px-4 py-2">{{ tipo }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
+        <div class="w-full max-w-3xl mt-6 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Conteo de Tokens</h2>
+            <div class="overflow-x-auto">
+                <table class="table-auto w-full border border-gray-300 mt-3">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="border px-4 py-2">PR</th>
+                            <th class="border px-4 py-2">ID</th>
+                            <th class="border px-4 py-2">Número</th>
+                            <th class="border px-4 py-2">Símbolo</th>
+                            <th class="border px-4 py-2">Error</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border px-4 py-2">{{ conteo_tokens.PR }}</td>
+                            <td class="border px-4 py-2">{{ conteo_tokens.ID }}</td>
+                            <td class="border px-4 py-2">{{ conteo_tokens.Número }}</td>
+                            <td class="border px-4 py-2">{{ conteo_tokens.Símbolo }}</td>
+                            <td class="border px-4 py-2">{{ conteo_tokens.Error }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        <h2>Análisis Semántico:</h2>
-        {% if es_valido_semantico %}
-            <p>Válido</p>
-        {% else %}
-            <p>Inválido</p>
-        {% endif %}
-        
-        <h2>Validación 'for':</h2>
-        {% if formato_for_valido is not None %}
-            {% if formato_for_valido %}
-                <p>El formato del 'for' es válido.</p>
+        <div class="w-full max-w-3xl mt-6 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Análisis Semántico:</h2>
+            {% if es_valido_semantico %}
+            <p class="mt-2 text-lg text-green-600">Válido</p>
             {% else %}
-                <p style="color: red;">El formato del 'for' es inválido.</p>
+            <p class="mt-2 text-lg text-red-600">Inválido</p>
             {% endif %}
+        </div>
+
+        <div class="w-full max-w-3xl mt-6 bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Validación 'for':</h2>
+            {% if formato_for_valido is not None %}
+            {% if formato_for_valido %}
+            <p class="mt-2 text-lg text-green-600">El formato del 'for' es válido.</p>
+            {% else %}
+            <p class="mt-2 text-lg text-red-600">El formato del 'for' es inválido.</p>
+            {% endif %}
+            {% endif %}
+        </div>
         {% endif %}
-    {% endif %}
+    </div>
 </body>
+
 </html>
-
-
-
